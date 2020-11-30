@@ -63,3 +63,22 @@ def select_all_user():
 
         for row in rows:
             print(row)
+
+def select_all_ids():
+    conn = create_connection(database)
+    with conn:
+        cur = conn.cursor()
+        cur.execute("SELECT id FROM user")
+
+        ids = cur.fetchall()
+        return ids
+
+
+def getUser(user):
+    conn = create_connection(database)
+    with conn:
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM user WHERE name=\"{user}\"".format(user=user))
+
+        info = cur.fetchall()
+        return info
